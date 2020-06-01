@@ -131,3 +131,51 @@ huntex/frontend:2 huntex/frontend:2 huntex/frontend:2%
 
 > После пересоздания подов они имеют новую версию приложения. В лекции говорили про этот момент, что контроллер ReplicaSet не следит за такими изменениями, поэтому, пришлось явно удалить поды, чтобы они создались уже на основе обновленного ReplicaSet.
 
+## Задача на Deployment
+
+> Подготовил образы, запушил в dockerhub
+> Создаем валидный манифест paymentservice-replicaset.yaml
+> Создаем валидный манифест paymentservice-deployment.yaml
+> Применяем его, проверяем, что создался он, репликасет и поды:
+
+```shell script
+# kubectl apply -f paymentservice-deployment.yaml 
+deployment.apps/paymentservice created
+
+# kubectl get po -l app=paymentservice
+NAME                             READY   STATUS    RESTARTS   AGE
+paymentservice-f75695b78-766nf   1/1     Running   0          109s
+paymentservice-f75695b78-j9gr6   1/1     Running   0          109s
+paymentservice-f75695b78-z7jmq   1/1     Running   0          109s
+
+# kubectl get rs
+NAME                       DESIRED   CURRENT   READY   AGE
+paymentservice-f75695b78   3         3         3       5m8s
+```
+
+> Обновляем версию деплоймента на v0.0.2 и применяем
+
+```shell script
+# kubectl apply -f paymentservice-deployment.yaml | kubectl get pods -l app=paymentservice
+-w
+```
+
+> Создался еще один ReplicaSet и поды сменили версию на новую.
+> Посмотрим историю:
+
+```shell script
+# kubectl rollout history deployment paymentservice
+deployment.apps/paymentservice 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+```
+
+> Откатимся и проверим версию образа
+
+```shell script
+# kubectl rollout undo deployment paymentservice --to-revision=1
+# kubectl get pods -l app=paymentservice -o=jsonpath='{.items[0:3].spec.containers[0].image}'
+huntex/paymentservice:v0.0.1 huntex/paymentservice:v0.0.1 huntex/paymentservice:v0.0.1%
+```
+
