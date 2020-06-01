@@ -99,3 +99,35 @@ frontend   1         1         1       11m
 ```
 
 > Меняем манифест, чтобы было 3 реплики, применяем
+
+## Задача на обновление ReplicaSet
+
+> Запушил в dockerhub huntex/frontend:2
+> Применил измененный манифест - изменения только в ReplicaSet, изменений в подах нет.
+
+```shell script
+# kubectl get replicaset frontend -o=jsonpath='{.spec.template.spec.containers[0].image}'
+huntex/frontend:2%
+
+# kubectl get pods -l app=frontend -o=jsonpath='{.items[0:3].spec.containers[0].image}'
+huntex/frontend:1 huntex/frontend:1 huntex/frontend:1% 
+```
+
+> Удаляем запущенные поды:
+
+```shell script
+# kubectl delete pods -l app=frontend
+pod "frontend-gt4mb" deleted
+pod "frontend-hsmv8" deleted
+pod "frontend-txchv" deleted
+```
+
+> Проверяем версию созданных ReplicaSet подов:
+
+```shell script
+# kubectl get pods -l app=frontend -o=jsonpath='{.items[0:3].spec.containers[0].image}'
+huntex/frontend:2 huntex/frontend:2 huntex/frontend:2% 
+```
+
+> После пересоздания подов они имеют новую версию приложения. В лекции говорили про этот момент, что контроллер ReplicaSet не следит за такими изменениями, поэтому, пришлось явно удалить поды, чтобы они создались уже на основе обновленного ReplicaSet.
+

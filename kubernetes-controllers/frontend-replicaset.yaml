@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: huntex/frontend:1
+          image: huntex/frontend:2
           env:
             - name: PRODUCT_CATALOG_SERVICE_ADDR
               value: "https://some-catalog-service"
