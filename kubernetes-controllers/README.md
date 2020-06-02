@@ -275,3 +275,6 @@ node-exporter-nzhs6   2/2     Running   0          10m   172.21.0.4   kind-worke
 ```
 
 > Необходимо удалить эти строки, чтобы все заработало.
+> P.S. удаление этих строчек не помогает, в официальной документации не нашел этого, гугление помогло
+> https://docs.platform9.com/kubernetes/disallowing-workloads-on-kubernetes-master-nodes/
+> Необходимо также добавить дополнительные значения в tolerations, либо, как я понял, можно просто задать все в key
