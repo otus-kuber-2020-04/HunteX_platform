@@ -75,6 +75,8 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
       tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
         - operator: Exists
       volumes:
         - hostPath:

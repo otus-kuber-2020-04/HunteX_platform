@@ -248,3 +248,30 @@ go_memstats_alloc_bytes 902344
 # TYPE go_memstats_alloc_bytes_total counter
 ```
 
+## Задача на DaemonSet (**)
+
+> В моем случае поды сразу запустились, в том числе и на мастерах.
+
+```shell script
+# kubectl get pods -o wide
+NAME                  READY   STATUS    RESTARTS   AGE   IP           NODE                  NOMINATED NODE   READINESS GATES
+node-exporter-45k84   2/2     Running   0          10m   172.21.0.2   kind-worker2          <none>           <none>
+node-exporter-8kh5n   2/2     Running   0          10m   172.21.0.5   kind-control-plane2   <none>           <none>
+node-exporter-dz4sh   2/2     Running   0          10m   172.21.0.3   kind-worker           <none>           <none>
+node-exporter-fq66z   2/2     Running   0          10m   172.21.0.6   kind-control-plane    <none>           <none>
+node-exporter-gpggc   2/2     Running   0          10m   172.21.0.8   kind-control-plane3   <none>           <none>
+node-exporter-nzhs6   2/2     Running   0          10m   172.21.0.4   kind-worker3          <none>           <none>
+```
+
+> Так что пойдем от обратного - судя по документации 
+> https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+
+```yaml
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+```
+
+> Необходимо удалить эти строки, чтобы все заработало.
