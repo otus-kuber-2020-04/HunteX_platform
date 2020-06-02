@@ -179,3 +179,6 @@ REVISION  CHANGE-CAUSE
 huntex/paymentservice:v0.0.1 huntex/paymentservice:v0.0.1 huntex/paymentservice:v0.0.1%
 ```
 
+## Задача на Deployment (*)
+
+> Используем параметры `maxSurge` и `maxUnavailable`
