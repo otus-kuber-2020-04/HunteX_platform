@@ -218,3 +218,33 @@ error: deployment "frontend" exceeded its progress deadline
 
 # kubectl rollout undo deployment/frontend
 ```
+
+## Задача на DaemonSet (*)
+
+> Нашел готовый здесь https://github.com/coreos/kube-prometheus/blob/master/manifests/node-exporter-daemonset.yaml
+> Пришлось удалить namespace и serviceAccountName, по-хорошему, их конечно нужно создать, но для тестового запуска можно и без них:
+
+```shell script
+# curl localhost:9100/metrics
+# HELP go_gc_duration_seconds A summary of the GC invocation durations.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 0
+go_gc_duration_seconds{quantile="0.25"} 0
+go_gc_duration_seconds{quantile="0.5"} 0
+go_gc_duration_seconds{quantile="0.75"} 0
+go_gc_duration_seconds{quantile="1"} 0
+go_gc_duration_seconds_sum 0
+go_gc_duration_seconds_count 0
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 6
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.12.5"} 1
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 902344
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+```
+
