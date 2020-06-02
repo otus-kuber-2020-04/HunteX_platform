@@ -182,3 +182,39 @@ huntex/paymentservice:v0.0.1 huntex/paymentservice:v0.0.1 huntex/paymentservice:
 ## Задача на Deployment (*)
 
 > Используем параметры `maxSurge` и `maxUnavailable`
+
+## Задача на Probes
+
+> Создадим деплоймент, добавим readinessProbe, применим и проверяем:
+
+```shell script
+# kubectl get po                           
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-74d8759784-4k6k7   1/1     Running   0          24s
+frontend-74d8759784-jb5k5   1/1     Running   0          24s
+frontend-74d8759784-z4qng   1/1     Running   0          24s
+```
+
+> Укажем некорректный путь и новую версию, применим
+
+```shell script
+# kubectl get po   
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-59df9b948c-wtw8j   0/1     Running   0          116s
+frontend-74d8759784-4k6k7   1/1     Running   0          21m
+frontend-74d8759784-jb5k5   1/1     Running   0          21m
+frontend-74d8759784-z4qng   1/1     Running   0          21m
+
+# kubectl decribe pod frontend-59df9b948c-wtw8j
+Warning  Unhealthy  32s (x2 over 42s)     kubelet, kind-worker  Readiness probe failed: HTTP probe failed with statuscode: 404
+```
+
+> Проверяем статус
+
+```shell script
+# kubectl rollout status deployment/frontend
+Waiting for deployment "frontend" rollout to finish: 1 out of 3 new replicas have been updated...
+error: deployment "frontend" exceeded its progress deadline
+
+# kubectl rollout undo deployment/frontend
+```
