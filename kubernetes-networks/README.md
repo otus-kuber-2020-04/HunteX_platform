@@ -145,4 +145,34 @@ Address:          192.168.64.5
 
 ## Задача на Canary (*)
 
-TODO
+> Создал по паре подов версий v1 и v2, сервисы и ингрессы
+> Добавил соответствующую настройку во второй ингресс
+> Проверил (меняется текст HELLO):
+
+```shell script
+# curl -H "Host: canary-test" http://172.17.255.1 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+HELLO :)
+</body>
+</html>
+```
+
+```shell script
+# curl -H "Host: canary-test" -H "canary: true" http://172.17.255.1 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+HELLO v2 :)
+</body>
+</html>
+```
