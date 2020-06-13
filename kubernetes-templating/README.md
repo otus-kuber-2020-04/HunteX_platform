@@ -82,3 +82,19 @@ chartmuseum   chartmuseum.35.228.140.184.nip.io   True    chartmuseum.35.228.140
 NAME                      	CHART VERSION	APP VERSION	DESCRIPTION                
 chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 ```
+
+## harbor
+
+> Добавляем чарт-репозиторий
+
+```shell script
+# helm repo add harbor https://helm.goharbor.io
+```
+
+> Создаем values.yaml для harbor
+> Устанавливаем harbor (во избежание проблем, устанавливаем последнюю версию чарта 1.4.0)
+
+```shell script
+# kubectl create ns harbor
+# helm upgrade --install harbor harbor/harbor --wait --namespace=harbor --version=1.4.0 -f harbor/values.yaml
+```
