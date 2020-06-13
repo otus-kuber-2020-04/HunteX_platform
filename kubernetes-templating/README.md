@@ -98,3 +98,16 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 # kubectl create ns harbor
 # helm upgrade --install harbor harbor/harbor --wait --namespace=harbor --version=1.4.0 -f harbor/values.yaml
 ```
+
+## helmfile (*)
+
+> Установил helmfile
+> Также нужно установить helm-diff
+
+```shell script
+# helm plugin install https://github.com/databus23/helm-diff
+```
+
+> Не добавлял ClusterIssuer
+> Запускал helmfile apply в корне директории helmfile/
+> Так как не понял как задавать файл
