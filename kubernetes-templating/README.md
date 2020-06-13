@@ -1,8 +1,12 @@
 # ДЦ "Шаблонизация манифестов"
 
+## Подготовка
+
 > Создаем managed kubernetes кластер в GCP
 > Устанавливаем gcloud и helm
 > Добавляем репозиторий stable
+
+## nginx-ingress
 
 > Устанавливаем helm чарт nginx-ingress 1.39.1 (версия 1.11.1 из ДЦ не подошла, так как использую кластер 1.16)
 
@@ -13,6 +17,8 @@
 --namespace=nginx-ingress \
 --version=1.39.1
 ```
+
+## cert-manager
 
 > Устанавливаем cert-manager
 
@@ -30,6 +36,8 @@
 
 > Создаем ClusterIssuer, применяем
 
+## chartmuseum
+
 > Устанавливаем chartmuseum
 
 ```shell script
@@ -43,4 +51,34 @@
 # kubectl get certificate -A                        
 NAMESPACE     NAME                                READY   SECRET                              AGE
 chartmuseum   chartmuseum.35.228.140.184.nip.io   True    chartmuseum.35.228.140.184.nip.io   36s
+```
+
+## chartmuseum (*)
+
+> Создаем чарт
+
+```shell script
+# helm create my-super-chart
+```
+
+> Оказывается, что сначала необходимо выключить параметр DISABLE_API и передеплоить chartmeseum
+> Собираем его и отправляем в chartmuseum
+
+```shell script
+# helm package .
+# curl --data-binary "@my-super-chart-0.1.0.tgz" https://chartmuseum.35.228.140.184.nip.io/api/charts
+```
+
+> Добавляем чарт-репозиторий
+
+```shell script
+# helm repo add chartmuseum https://chartmuseum.35.228.140.184.nip.io
+```
+
+> Ищем чарт
+
+```shell script
+# helm search repo my-super-chart
+NAME                      	CHART VERSION	APP VERSION	DESCRIPTION                
+chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 ```
