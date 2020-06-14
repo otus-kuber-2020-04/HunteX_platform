@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: frontend
