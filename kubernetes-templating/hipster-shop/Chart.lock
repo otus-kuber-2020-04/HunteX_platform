@@ -1,9 +1,9 @@
 dependencies:
 - name: frontend
-  repository: file://../frontend
+  repository: https://harbor.35.228.112.229.nip.io/chartrepo/library
   version: 0.1.0
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 10.7.1
-digest: sha256:7b5843fc428e2ce3b822dddbccdddca225047b3edc552cd24b17364e3891f088
-generated: "2020-06-14T19:52:58.807812+03:00"
+digest: sha256:8f7dab0c53ebf826e346ff763b74dcc45a43f2287c3a6b85a544b2760fa142f6
+generated: "2020-06-14T22:23:03.68023+03:00"

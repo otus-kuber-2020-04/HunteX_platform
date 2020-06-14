@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - shop.35.228.110.109.nip.io
-      secretName: shop.35.228.110.109.nip.io
+        - shop.35.228.112.229.nip.io
+      secretName: shop.35.228.112.229.nip.io
   rules:
-    - host: shop.35.228.110.109.nip.io
+    - host: shop.35.228.112.229.nip.io
       http:
         paths:
           - path: /

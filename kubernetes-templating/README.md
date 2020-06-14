@@ -50,7 +50,7 @@
 ```shell script
 # kubectl get certificate -A                        
 NAMESPACE     NAME                                READY   SECRET                              AGE
-chartmuseum   chartmuseum.35.228.110.109.nip.io   True    chartmuseum.35.228.110.109.nip.io   36s
+chartmuseum   chartmuseum.35.228.112.229.nip.io   True    chartmuseum.35.228.112.229.nip.io   36s
 ```
 
 ## chartmuseum (*)
@@ -66,13 +66,13 @@ chartmuseum   chartmuseum.35.228.110.109.nip.io   True    chartmuseum.35.228.110
 
 ```shell script
 # helm package .
-# curl --data-binary "@my-super-chart-0.1.0.tgz" https://chartmuseum.35.228.110.109.nip.io/api/charts
+# curl --data-binary "@my-super-chart-0.1.0.tgz" https://chartmuseum.35.228.112.229.nip.io/api/charts
 ```
 
 > Добавляем чарт-репозиторий
 
 ```shell script
-# helm repo add chartmuseum https://chartmuseum.35.228.110.109.nip.io
+# helm repo add chartmuseum https://chartmuseum.35.228.112.229.nip.io
 ```
 
 > Ищем чарт
@@ -121,3 +121,40 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 ## Создаем свой helm chart (*)
 
 > Подключил community chart Redis
+
+## Проверка
+
+> Добавляем harbor
+
+```shell script
+# helm repo add templating https://harbor.35.228.112.229.nip.io/chartrepo/library
+# helm repo update
+```
+
+> Устанавливаем плагин helm-push для публикации чартов в Harbor
+
+```shell script
+# helm plugin install https://github.com/chartmuseum/helm-push
+```
+
+> Обновляем зависимости и пакуем
+
+```shell script
+# helm dep update hipster-shop
+# helm package frontend/ -d frontend
+# helm package hipster-shop/ -d hipster-shop
+```
+
+> Делаем push
+
+```shell script
+# helm push --username admin --password Harbor12345 ./frontend/ templating
+# helm push --username admin --password Harbor12345 ./hipster-shop/ templating
+```
+
+> Проверяем установки, удалив прошлый релиз
+
+```shell script
+# helm uninstall -n hipster-shop hipster-shop
+# helm upgrade --install hipster-shop templating/hipster-shop --namespace hipster-shop
+```

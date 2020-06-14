@@ -254,10 +254,10 @@ ingress:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     cert-manager.io/acme-challenge-type: http01
   hosts:
-    - name: chartmuseum.35.228.110.109.nip.io
+    - name: chartmuseum.35.228.112.229.nip.io
       path: /
       tls: true
-      tlsSecret: chartmuseum.35.228.110.109.nip.io
+      tlsSecret: chartmuseum.35.228.112.229.nip.io
 
 ## Chartmuseum Ingress labels
 ##
