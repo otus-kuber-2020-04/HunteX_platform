@@ -50,7 +50,7 @@
 ```shell script
 # kubectl get certificate -A                        
 NAMESPACE     NAME                                READY   SECRET                              AGE
-chartmuseum   chartmuseum.35.228.140.184.nip.io   True    chartmuseum.35.228.140.184.nip.io   36s
+chartmuseum   chartmuseum.35.228.110.109.nip.io   True    chartmuseum.35.228.110.109.nip.io   36s
 ```
 
 ## chartmuseum (*)
@@ -66,13 +66,13 @@ chartmuseum   chartmuseum.35.228.140.184.nip.io   True    chartmuseum.35.228.140
 
 ```shell script
 # helm package .
-# curl --data-binary "@my-super-chart-0.1.0.tgz" https://chartmuseum.35.228.140.184.nip.io/api/charts
+# curl --data-binary "@my-super-chart-0.1.0.tgz" https://chartmuseum.35.228.110.109.nip.io/api/charts
 ```
 
 > Добавляем чарт-репозиторий
 
 ```shell script
-# helm repo add chartmuseum https://chartmuseum.35.228.140.184.nip.io
+# helm repo add chartmuseum https://chartmuseum.35.228.110.109.nip.io
 ```
 
 > Ищем чарт
@@ -114,3 +114,4 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 
 ## Создаем свой helm chart
 
+> Создал frontend чарт, вынес туда конфигурацию, создал Ingress

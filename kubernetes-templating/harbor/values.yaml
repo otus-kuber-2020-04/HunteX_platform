@@ -5,7 +5,7 @@ expose:
   type: ingress
   tls:
     enabled: true
-    secretName: harbor.35.228.140.184.nip.io
+    secretName: harbor.35.228.110.109.nip.io
   ingress:
     annotations:
       kubernetes.io/ingress.class: nginx
@@ -13,4 +13,4 @@ expose:
       cert-manager.io/cluster-issuer: "letsencrypt-production"
       cert-manager.io/acme-challenge-type: http01
     hosts:
-      core: harbor.35.228.140.184.nip.io
+      core: harbor.35.228.110.109.nip.io
