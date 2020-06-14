@@ -111,3 +111,6 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 > Не добавлял ClusterIssuer
 > Запускал helmfile apply в корне директории helmfile/
 > Так как не понял как задавать файл
+
+## Создаем свой helm chart
+
