@@ -117,3 +117,7 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 > Создал frontend чарт, вынес туда конфигурацию, создал Ingress
 > Шаблонизировал меняющиеся параметры
 > Добавил этот чарт как зависимость к родительскому чарту
+
+## Создаем свой helm chart (*)
+
+> Подключил community chart Redis
