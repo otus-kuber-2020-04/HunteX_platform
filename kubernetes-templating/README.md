@@ -158,3 +158,7 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 # helm uninstall -n hipster-shop hipster-shop
 # helm upgrade --install hipster-shop templating/hipster-shop --namespace hipster-shop
 ```
+
+## Kubecfg
+
+> Вынес сущности из общего файла в отдельные манифесты
