@@ -162,3 +162,5 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 ## Kubecfg
 
 > Вынес сущности из общего файла в отдельные манифесты
+> Установил kubecfg
+> Добавил services.jsonnet
