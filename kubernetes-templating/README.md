@@ -173,3 +173,8 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan init --directory jsonnet
 ```
 
+> Вынес adservice и скомпилировал (простая реализация через copy)
+
+```shell script
+docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan compile
+```
