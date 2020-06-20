@@ -164,3 +164,12 @@ chartmuseum/my-super-chart	0.1.0        	1.16.0     	A Helm chart for Kubernetes
 > Вынес сущности из общего файла в отдельные манифесты
 > Установил kubecfg
 > Добавил services.jsonnet
+
+## Kapitan (Задание со *)
+
+> Инициализировал директорию
+
+```shell script
+docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan init --directory jsonnet
+```
+
