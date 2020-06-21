@@ -178,3 +178,10 @@ docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan init --directory js
 ```shell script
 docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan compile
 ```
+
+## Kustomize
+
+> Установил kustomize
+> Вынес cartservice в базовую директорию (kustomize/base)
+> Добавил туда kustomization.yaml
+> Добавил overrides
