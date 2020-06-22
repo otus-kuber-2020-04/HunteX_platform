@@ -1,0 +1,8 @@
+redis:
+  usePassword: false
+  cluster:
+    enabled: false
+  master:
+    service:
+      labels:
+        app: redis-cart

@@ -1,0 +1,6 @@
+classes:
+  - common
+  - adservice
+
+parameters:
+  target_name: adservice
