@@ -31,3 +31,4 @@ mysql-operator.py:11: YAMLLoadWarning: calling yaml.load() without Loader=... is
 
 > Ответ на вопрос, почему объект создался:
 > Потому что это объект обработчика (handler object), а не объект, ранее созданный применением CR
+> Остановил mysql-operator.py, удалил созданные им ресурсы
