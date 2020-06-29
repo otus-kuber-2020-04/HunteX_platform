@@ -28,3 +28,6 @@ mysql-operator.py:11: YAMLLoadWarning: calling yaml.load() without Loader=... is
 [2020-06-29 20:55:42,533] kopf.objects         [INFO    ] [default/mysql-instance] Handler 'mysql_on_create' succeeded.
 [2020-06-29 20:55:42,534] kopf.objects         [INFO    ] [default/mysql-instance] All handlers succeeded for creation.
 ```
+
+> Ответ на вопрос, почему объект создался:
+> Потому что это объект обработчика (handler object), а не объект, ранее созданный применением CR
