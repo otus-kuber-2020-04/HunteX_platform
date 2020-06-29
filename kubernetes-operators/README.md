@@ -5,3 +5,4 @@
 > Создаем Custom Resource и Custom Resource Definition
 > Поправил apiVersion у crd, так как предыдущая была deprecated
 > Применил их в кластер
+> Добавил валидацию, применил изменения в кластер
