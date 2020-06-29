@@ -2,7 +2,6 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: mysqls.otus.homework # имя CRD должно иметь формат plural.group
-
 spec:
   scope: Namespaced     # Данный CRD будер работать в рамках namespace
   group: otus.homework  # Группа, отражается в поле apiVersion CR
@@ -34,6 +33,11 @@ spec:
                   type: string
                 storage_size:
                   type: string
+              required:
+                - image
+                - database
+                - password
+                - storage_size
   names:                # различные форматы имени объекта CR
     kind: MySQL         # kind CR
     plural: mysqls
