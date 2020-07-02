@@ -59,6 +59,5 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +----+-------------+
 |  1 | some data   |
 |  2 | some data-2 |
-|  3 | some data   |
 +----+-------------+
 ```
