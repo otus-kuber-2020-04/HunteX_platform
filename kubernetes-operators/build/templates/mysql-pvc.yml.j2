@@ -8,6 +8,8 @@ spec:
   resources:
     requests:
       storage: {{ storage_size }}
+  storageClassName: local-storage
+  volumeMode: Filesystem
   selector:
     matchLabels:
       pv-usage: {{ name }}

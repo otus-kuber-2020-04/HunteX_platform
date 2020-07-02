@@ -6,9 +6,11 @@ metadata:
     pv-usage: {{ name }}
 spec:
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
   capacity:
     storage: {{ storage_size }}
   hostPath:
-    path: /data/{{ name }}-pv/
+    path: /Users/User/Projects/HunteX_platform/kubernetes-operators/build/data/{{ name }}-pv/

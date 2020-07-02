@@ -32,3 +32,33 @@ mysql-operator.py:11: YAMLLoadWarning: calling yaml.load() without Loader=... is
 > Ответ на вопрос, почему объект создался:
 > Потому что это объект обработчика (handler object), а не объект, ранее созданный применением CR
 > Остановил mysql-operator.py, удалил созданные им ресурсы
+> Доработал mysql-operator.py
+> Доработал PV и PVC, так как не получалось сделать bound
+> Удалил инстанс
+
+```shell script
+# kubectl delete mysqls.otus.homework mysql-instance
+mysql.otus.homework "mysql-instance" deleted
+```
+
+> Проверил, что успешно отработала джоба бэкапа
+
+```shell script
+# kubectl get jobs.batch
+NAME                         COMPLETIONS   DURATION   AGE
+backup-mysql-instance-job    1/1           1s         10s
+```
+
+> Создал инстанс заново, проверяем работу джобы восстановления
+
+```shell script
+# kubectl exec -it mysql-instance-f5b97ffff-7lbb4 -- mysql -potuspassword -e "select * from test;" otus-database
+mysql: [Warning] Using a password on the command line interface can be insecure.
++----+-------------+
+| id | name        |
++----+-------------+
+|  1 | some data   |
+|  2 | some data-2 |
+|  3 | some data   |
++----+-------------+
+```

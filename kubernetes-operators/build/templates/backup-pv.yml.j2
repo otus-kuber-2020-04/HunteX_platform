@@ -6,9 +6,11 @@ metadata:
     pv-usage: "backup-{{ name }}"
 spec:
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
   capacity:
     storage: 1Gi
   hostPath:
-    path: /data/pv-backup/
+    path: /Users/User/Projects/HunteX_platform/kubernetes-operators/build/data/pv-backup/
