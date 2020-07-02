@@ -63,4 +63,5 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 ```
 
 > Собрал и запушил докер образ в https://hub.docker.com/r/huntex/operator
-
+> Добавил в deploy сущности для запуска оператора внутри пода
+> Проверил, что все работает
