@@ -66,6 +66,11 @@ def mysql_on_create(body, spec, **kwargs):
         'image': image,
         'password': password,
         'database': database})
+    restore_job = render_template('restore-job.yml.j2', {
+        'name': name,
+        'image': image,
+        'password': password,
+        'database': database})
 
     # Определяем, что созданные ресурсы являются дочерними к управляемому CustomResource:
     kopf.append_owner_reference(persistent_volume, owner=body)
@@ -85,6 +90,12 @@ def mysql_on_create(body, spec, **kwargs):
     # Создаем mysql Deployment:
     api = kubernetes.client.AppsV1Api()
     api.create_namespaced_deployment('default', deployment)
+    # Пытаемся восстановиться из backup
+    try:
+        api = kubernetes.client.BatchV1Api()
+        api.create_namespaced_job('default', restore_job)
+    except kubernetes.client.rest.ApiException:
+        pass
 
     # Cоздаем PVC  и PV для бэкапов:
     try:
