@@ -65,3 +65,26 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 > Собрал и запушил докер образ в https://hub.docker.com/r/huntex/operator
 > Добавил в deploy сущности для запуска оператора внутри пода
 > Проверил, что все работает
+
+> Вывод #1
+
+```shell script
+# kubectl get jobs                                      
+NAME                         COMPLETIONS   DURATION   AGE
+backup-mysql-instance-job    1/1           1s         89s
+restore-mysql-instance-job   1/1           3m11s      3m21s
+```
+
+> Вывод #2
+
+```shell script
+# export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}")
+# kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
+mysql: [Warning] Using a password on the command line interface can be insecure.
++----+-------------+
+| id | name        |
++----+-------------+
+|  1 | some data   |
+|  2 | some data-2 |
++----+-------------+
+```
